@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TrainTime</title>
+
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<div class="container">
+    <br>
+
+    <!-- Jumbotron Title -->
+    <div class="jumbotron">
+        <h1 class="text-center">Anytime is Train Time</h1>
+        <h3 class="text-center">Choo choo. Chee chee.</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Current Train Times</h3>
+                    </div>
+                    <table class="table" id="myTable">
+                    <thead>
+                    <tr>
+
+                        <th id="trainName">Train Name</th>
+                        <th id="destination">Destination</th>
+                        <th id="frequency">Frequency</th>
+                        <th id="nextArrival">Next Arrival</th>
+                        <th id="minutesAway">Minutes Away</th>
+    
+                     </tr>
+                     </thead>
+                        <tbody id="trianList"></tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add a train-->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Current Train Schedule</h3>
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group" >
+                            <label for= "trainName">Train Name</label>
+                            <input type="text" class="form-control" id="trainName">
+                        </div>
+                        <div class="form-group">
+                            <label for="destination">Destination</label>
+                            <input type="text" class="form-control" id="destination">
+                        </div>
+                        <div class="form-group">
+                            <label for="frequency">Frequency</label>
+                            <input type="number" class="form-control" id="frequency">
+                        </div>  
+                        <div class="form-group">
+                            <label for="nextArrival">Next Arrival</label>
+                            <input type="text" class="form-control" id="nextArrival">
+                        </div>  
+                    </form>
+                        <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/3.5.3/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAn8dPfCC0DunH_6bqlIuC0Xhgl3SAcr3c",
+    authDomain: "trainlist-9a5cf.firebaseapp.com",
+    databaseURL: "https://trainlist-9a5cf.firebaseio.com",
+    storageBucket: "",
+    messagingSenderId: "567204470332"
+  };
+  firebase.initializeApp(config);
+
+</script>
+<!-- javascript -->
+    <script type="text/javascript" src="assets/js/logic.js"></script>
+</body>
+</html>
