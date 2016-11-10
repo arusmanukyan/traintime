@@ -10,7 +10,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
+
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
 </head>
 <body>
 
@@ -29,7 +32,8 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Current Train Times</h3>
                     </div>
-                    <table class="table" id="myTable">
+
+                    <table class="table" id="trainTable">
                     <thead>
                     <tr>
 
@@ -42,7 +46,7 @@
                      </tr>
                      </thead>
 <tbody>
-    
+   <!-- tain information here -->
 </tbody>
 </table>
 
@@ -50,7 +54,7 @@
                     </div>
                     </div>
                     </div>
-    <!-- Add an employee-->
+    <!-- Add a train-->
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -58,6 +62,7 @@
                     <h3 class="panel-title">Current Train Schedule</h3>
                 </div>
                 <div class="panel-body">
+                <!-- add train form -->
                     <form>
                         <div class="form-group" >
                             <label for= "trainName">Train Name</label>
@@ -85,20 +90,8 @@
 </div>
 
 </div>
-    
-<script src="https://www.gstatic.com/firebasejs/3.5.3/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAn8dPfCC0DunH_6bqlIuC0Xhgl3SAcr3c",
-    authDomain: "trainlist-9a5cf.firebaseapp.com",
-    databaseURL: "https://trainlist-9a5cf.firebaseio.com",
-    storageBucket: "",
-    messagingSenderId: "567204470332"
-  };
-  firebase.initializeApp(config);
-  </script>
 
-  <script type="text/javascript" src = "assets/js/logic.js"></script>
+
+ <script type="text/javascript" src="assets/js/logic.js"></script>
 </body>
 </html>
