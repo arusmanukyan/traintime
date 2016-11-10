@@ -1,14 +1,14 @@
 $(document).ready(function(){
 
+  // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyAn8dPfCC0DunH_6bqlIuC0Xhgl3SAcr3c",
-    authDomain: "trainlist-9a5cf.firebaseapp.com",
-    databaseURL: "https://trainlist-9a5cf.firebaseio.com",
-    storageBucket: "trainlist-9a5cf.appspot.com",
-    messagingSenderId: "567204470332"
+    apiKey: "AIzaSyCbhKJpmqH5vCZ_WEutSNsgMsZRSRIpn1g",
+    authDomain: "emplyeedatabase.firebaseapp.com",
+    databaseURL: "https://emplyeedatabase.firebaseio.com",
+    storageBucket: "emplyeedatabase.appspot.com",
+    messagingSenderId: "501638414505"
   };
   firebase.initializeApp(config);
-
 
       var database = firebase.database();
 
@@ -19,12 +19,11 @@ $(document).ready(function(){
             var frequency = $("#frequency").val().trim();
             var nextArrival = $("#nextArrival").val().trim();
 
-        
             database.ref().push({
               trainName: trainName,
               destination: destination,
               frequency: frequency,
-              nextArrival: nextArrival
+              nextArrival: nextArrival,
           })
 
             $("#trainName").val("");
@@ -33,7 +32,7 @@ $(document).ready(function(){
             $("#nextArrival").val("");
 
             return false;
-    })
+    });
 
         
         database.ref().on("child_added", function(childSnapshot){
@@ -41,26 +40,29 @@ $(document).ready(function(){
         var fireFrequency = childSnapshot.val().frequency;
             // push back a year
         var firstTime = moment(childSnapshot.val().nextArrival, "hh:mm").subtract(1, "years");
-        var trainTime = moment(firsTime).format("HH:mm");
+        var trainTime = moment(firstTime).format("HH:mm");
         var currentTime = moment();
         
         var timeConverted = moment(trainTime, "hh:mm").subtract(1, "years");
         var firstTimeMinutes = moment().diff(moment(timeConverted), "minutes");
-        var trainRemainder = firstTimeMinutes % fireNextArrival;
+        var trainRemainder = firstTimeMinutes % nextArrival;
 
-        var minutesToTrain = fireFrequency - trainRemainder;
+        var minutesToTrain = fireFrequency + trainTime;
 
         var nextTrain = moment().add(minutesToTrain, "minutes").format("hh:mm");
 
-        $("#trainTable > tbody").append('<tr> <td>'+ childSnapshot.trainName +'</td> <td>'+ childSnapshot.destination+'</td><td>'+ childSnapshot.frequency+'</td><td>'+ childSnapshot.nextTrain +'</td><td>'+ childSnapshot.nextArrival +'</td><td>'+'NA'+'</td></tr>');
+        $("#trainTable").append("<tr><td>"+ childSnapshot.val().trainName + "</td><td>"+ childSnapshot.val().destination + "</td><td>" + childSnapshot.val().frequency + "</td><td>" + nextTrain + "</td><td>" + minutesToTrain + "</td></tr>");
+
+        console.log(trainName)
+
    },function(errorObject){
-    console.log("Error handle: " + errorObject.code);
+    console.log(errorObject.code);
    })
 
 
     //refreashes train data every minute
 setInterval(function(){
     location.reload();
-  }, 60000)
+  }, 60000);
 
 });
