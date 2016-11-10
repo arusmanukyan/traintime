@@ -46,12 +46,12 @@ $(document).ready(function(){
         var timeConverted = moment(trainTime, "hh:mm").subtract(1, "years");
         var firstTimeMinutes = moment().diff(moment(timeConverted), "minutes");
         var trainRemainder = firstTimeMinutes % nextArrival;
-
-        var minutesToTrain = fireFrequency + trainTime;
-
+        
+        var minutesToTrain = fireFrequency + firstTimeMinutes;
         var nextTrain = moment().add(minutesToTrain, "minutes").format("hh:mm");
+        
 
-        $("#trainTable").append("<tr><td>"+ childSnapshot.val().trainName + "</td><td>"+ childSnapshot.val().destination + "</td><td>" + childSnapshot.val().frequency + "</td><td>" + nextTrain + "</td><td>" + minutesToTrain + "</td></tr>");
+        $("#trainTable").append("<tr><td>"+ childSnapshot.val().trainName + "</td><td>"+ childSnapshot.val().destination + "</td><td>" + childSnapshot.val().frequency + "</td><td>" + minutesToTrain + "</td><td>" + nextTrain + "</td></tr>");
 
         console.log(trainName)
 
