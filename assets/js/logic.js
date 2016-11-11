@@ -38,31 +38,29 @@ $(document).ready(function(){
         database.ref().on("child_added", function(childSnapshot){
             // finds requency of train
         var fireFrequency = childSnapshot.val().frequency;
-            // push back a year
+        var currentTime = moment();   
+         // push back a year
         var firstTime = moment(childSnapshot.val().nextArrival, "hh:mm").subtract(1, "years");
-        var trainTime = moment(firstTime).format("HH:mm");
-        var currentTime = moment();
+        var trainTime = moment(firstTime).format("hh:mm");
+        
         
         var timeConverted = moment(trainTime, "hh:mm").subtract(1, "years");
         var firstTimeMinutes = moment().diff(moment(timeConverted), "minutes");
         var trainRemainder = firstTimeMinutes % nextArrival;
         
-        var minutesToTrain = fireFrequency - firstTimeMinutes;
-        var nextTrain = moment().add(minutesToTrain, "minutes").format("hh:mm");
+        var minutesToTrain = firstTimeMinutes - fireFrequency;
+        var nextTrain = moment().add(minutesToTrain, "minutes").format("00:mm");
         
 
         $("#trainTable").append("<tr><td>"+ childSnapshot.val().trainName + "</td><td>"+ childSnapshot.val().destination + "</td><td>" + childSnapshot.val().frequency + "</td><td>" + trainTime + "</td><td>" + nextTrain + "</td></tr>");
 
-        console.log(trainName)
-
-   },function(errorObject){
-    console.log(errorObject.code);
-   })
+        
+      })
 
 
     //refreashes train data every minute
 setInterval(function(){
     location.reload();
-  }, 60000);
+  }, 30000);
 
 });
